@@ -5,17 +5,25 @@
   </Configs>
   <NewExtensions/>
   <sounds name="sound"/>
-  <sprites name="sprites"/>
+  <sprites name="sprites">
+    <sprite>sprites\spr_player</sprite>
+    <sprite>sprites\sprite1</sprite>
+  </sprites>
   <backgrounds name="background">
     <background>background\bg_floor</background>
     <background>background\bg_wall</background>
   </backgrounds>
   <paths name="paths"/>
+  <scripts name="scripts">
+    <script>scripts\move.gml</script>
+    <script>scripts\grid_place_meeting.gml</script>
+  </scripts>
   <objects name="objects">
     <object>objects\Level</object>
+    <object>objects\Player</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\room0</room>
+    <room>rooms\rm_one</room>
   </rooms>
   <constants number="5">
     <constant name="VOID">-7</constant>

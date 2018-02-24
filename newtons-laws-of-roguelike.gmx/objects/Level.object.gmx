@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-10</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -47,6 +47,9 @@ randomize();
 // Create a Controller in the center of the grid
 var cx = width div 2
 var cy = height div 2
+
+// Create the Player
+instance_create(cx * CELL_WIDTH+CELL_WIDTH/2, cy * CELL_HEIGHT+CELL_HEIGHT/2, Player);
 
 // Give the controller a random direction
 var cdir = irandom(3);
