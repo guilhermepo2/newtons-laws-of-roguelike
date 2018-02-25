@@ -7,7 +7,12 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\spr_player</sprite>
-    <sprite>sprites\sprite1</sprite>
+    <sprite>sprites\s_player_run_down</sprite>
+    <sprite>sprites\s_player_run_right</sprite>
+    <sprite>sprites\s_player_run_up</sprite>
+    <sprite>sprites\s_player_attack_down</sprite>
+    <sprite>sprites\s_player_attack_right</sprite>
+    <sprite>sprites\s_player_attack_up</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_floor</background>
@@ -18,6 +23,18 @@
   <scripts name="scripts">
     <script>scripts\move.gml</script>
     <script>scripts\grid_place_meeting.gml</script>
+    <scripts name="movement">
+      <script>scripts\set_movement.gml</script>
+      <script>scripts\move_movement_entity.gml</script>
+      <script>scripts\initialize_movement_entity.gml</script>
+      <script>scripts\apply_friction_to_movement_entity.gml</script>
+      <script>scripts\add_movement_maxspeed.gml</script>
+    </scripts>
+    <scripts name="helper">
+      <script>scripts\animation_hit_frame.gml</script>
+      <script>scripts\approach.gml</script>
+      <script>scripts\array.gml</script>
+    </scripts>
   </scripts>
   <objects name="objects">
     <object>objects\Level</object>
