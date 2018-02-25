@@ -1,4 +1,4 @@
-﻿///move_movement_entity(bounce)
+///move_movement_entity(bounce)
 var _bounce = argument0;
 
 // Apply friction when sliding on walls

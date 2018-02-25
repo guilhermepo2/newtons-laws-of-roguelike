@@ -1,4 +1,4 @@
-﻿///add_movement_maxspeed(direction, acceleration, max_speed)
+///add_movement_maxspeed(direction, acceleration, max_speed)
 var _direction = argument0;
 var _acceleration = argument1;
 var _max_speed = argument2;

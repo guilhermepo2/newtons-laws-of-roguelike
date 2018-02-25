@@ -4,7 +4,9 @@
     <Config>Configs\Default</Config>
   </Configs>
   <NewExtensions/>
-  <sounds name="sound"/>
+  <sounds name="sound">
+    <sound>sound\a_swipe</sound>
+  </sounds>
   <sprites name="sprites">
     <sprite>sprites\spr_player</sprite>
     <sprite>sprites\s_player_run_down</sprite>
@@ -13,6 +15,14 @@
     <sprite>sprites\s_player_attack_down</sprite>
     <sprite>sprites\s_player_attack_right</sprite>
     <sprite>sprites\s_player_attack_up</sprite>
+    <sprite>sprites\spr_down_zl</sprite>
+    <sprite>sprites\spr_right_zl</sprite>
+    <sprite>sprites\spr_up_zl</sprite>
+    <sprite>sprites\spr_attack_down_zl</sprite>
+    <sprite>sprites\spr_attack_up_zl</sprite>
+    <sprite>sprites\spr_attack_right_zl</sprite>
+    <sprite>sprites\spr_attack_left_zl</sprite>
+    <sprite>sprites\spr_left_zl</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_floor</background>
@@ -39,11 +49,13 @@
   <objects name="objects">
     <object>objects\Level</object>
     <object>objects\Player</object>
+    <object>objects\o_enemy</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_one</room>
   </rooms>
-  <constants number="5">
+  <constants number="6">
+    <constant name="DUNGEON_STEPS">500</constant>
     <constant name="VOID">-7</constant>
     <constant name="CELL_WIDTH">32</constant>
     <constant name="CELL_HEIGHT">32</constant>

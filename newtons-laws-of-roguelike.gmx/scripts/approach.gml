@@ -1,4 +1,4 @@
-﻿///approach(current, target, amount)
+///approach(current, target, amount)
 var _current = argument0;
 var _target = argument1;
 var _amount = argument2;
