@@ -8,6 +8,7 @@
     <sound>sound\a_swipe</sound>
     <sound>sound\a_item</sound>
     <sound>sound\a_collect_item</sound>
+    <sound>sound\a_explosion</sound>
   </sounds>
   <sprites name="sprites">
     <sprite>sprites\spr_player</sprite>
@@ -62,6 +63,7 @@
       <sprite>sprites\s_hit_effect</sprite>
       <sprite>sprites\s_death_effect</sprite>
       <sprite>sprites\s_shine</sprite>
+      <sprite>sprites\s_bomb_effect</sprite>
     </sprites>
     <sprites name="misc">
       <sprite>sprites\s_small_shadow</sprite>
@@ -114,6 +116,7 @@
     <object>objects\o_exit</object>
     <objects name="enemies">
       <object>objects\o_log</object>
+      <object>objects\o_bomb_log</object>
       <object>objects\o_enemy</object>
     </objects>
     <object>objects\o_hitbox</object>

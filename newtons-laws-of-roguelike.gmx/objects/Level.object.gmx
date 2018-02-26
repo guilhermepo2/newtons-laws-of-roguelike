@@ -138,8 +138,9 @@ for (var yy = 0; yy &lt; height; yy++) {
             var odds = 10;
             var enemy_x = xx * CELL_WIDTH + CELL_WIDTH/2;
             var enemy_y = yy * CELL_HEIGHT+CELL_HEIGHT/2;
+            var _enemy = choose(o_log, o_bomb_log);
             if (point_distance(enemy_x, enemy_y, Player.x, Player. y) &gt; 80 &amp;&amp; irandom(odds) == odds) {
-                instance_create(enemy_x, enemy_y, o_log);
+                instance_create(enemy_x, enemy_y, _enemy);
             }
         } 
     }
