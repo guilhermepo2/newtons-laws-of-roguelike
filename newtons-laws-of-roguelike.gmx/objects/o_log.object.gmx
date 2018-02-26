@@ -126,6 +126,7 @@ sprite_index = sprite_[state_];
             <string>/// Attack State
 
 if animation_hit_frame(1) {
+    audio_play_sound(a_enemy_attack, 2, false);
     var _arr = array_create(1);
     _arr[1] = Player;
     create_hitbox(s_log_hitbox, x, y, 0, 1, _arr, 1, 4);

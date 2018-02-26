@@ -8,6 +8,10 @@ The entry is a simple Roguelike where the enemies are inspired on Newton's Laws 
 
 **The Log:** The log will remain sleeping unless acted upon a force :)
 
+**The Light Log:** This log runs faaaaaaaaaaaaast through the dungeon, just when you are defenseless it hits you! And then he runs, fast.
+
+**The Heavy Log:** This logs run sloooooooooooooooooow through the dungeon, and when you are EXPECTING it hits you! Should be easy to avoid.
+
 **The BOMB Log:** The BOMB Log will punish you for hitting it, with the same force, but on opposite direction :)
 
 ### Credits:
