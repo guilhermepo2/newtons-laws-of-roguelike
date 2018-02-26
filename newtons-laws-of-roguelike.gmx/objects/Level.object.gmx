@@ -27,6 +27,17 @@
             <kind>1</kind>
             <string>/// Create a Level
 
+// PLAYER INFORMATION
+global.player_max_health_ = 8;
+global.player_health_ = global.player_max_health_;
+player_alive_ = true;
+
+// SETTING GUI SIZE
+// Change UI size to match the camera size (not the viewport size)
+var _view_width = view_wview[0];
+var _view_height = view_hview[0];
+display_set_gui_size(_view_width, _view_height);
+
 // Resize the room
 room_width = (CELL_WIDTH/16) * 720;
 room_height = (CELL_HEIGHT/16) * 720;
@@ -50,6 +61,9 @@ var cy = height div 2
 
 // Create the Player
 instance_create(cx * CELL_WIDTH+CELL_WIDTH/2, cy * CELL_HEIGHT+CELL_HEIGHT/2, Player);
+// Draw the Stairs
+// show_debug_message(string(Player.x) + " - " + string(Player.y))
+// tile_add(bg_stairs, 0, 0, CELL_WIDTH, CELL_HEIGHT, cx * CELL_WIDTH, cy * CELL_HEIGHT, -1);
 
 // Give the controller a random direction
 var cdir = irandom(3);
@@ -102,28 +116,34 @@ for (var yy = 1; yy &lt; height - 1; yy++) {
     }
 }
 
+// Get tile sizes
+var tw = CELL_WIDTH / 2;
+var th = CELL_HEIGHT / 2;
 
 // Draw the level using the grid
 for (var yy = 0; yy &lt; height; yy++) {
     for(var xx = 0; xx &lt; width; xx++) {
+        
         if(grid[# xx, yy] == FLOOR) {
             // Draw the Floor
-            tile_add(bg_floor, 0, 0, CELL_WIDTH, CELL_HEIGHT, xx * CELL_WIDTH, yy * CELL_HEIGHT, 0);
+            
+            if(irandom(2) == 2) {
+                tile_add(bg_floor, 0, 0, CELL_WIDTH, CELL_HEIGHT, xx * CELL_WIDTH, yy * CELL_HEIGHT, 0);  
+            } else {
+                tile_add(bg_floor_2, 0, 0, CELL_WIDTH, CELL_HEIGHT, xx * CELL_WIDTH, yy * CELL_HEIGHT, 0);
+            }
+            
             
             // Add some enemies
             var odds = 10;
             var enemy_x = xx * CELL_WIDTH + CELL_WIDTH/2;
             var enemy_y = yy * CELL_HEIGHT+CELL_HEIGHT/2;
             if (point_distance(enemy_x, enemy_y, Player.x, Player. y) &gt; 80 &amp;&amp; irandom(odds) == odds) {
-                instance_create(enemy_x, enemy_y, o_enemy);
+                instance_create(enemy_x, enemy_y, o_log);
             }
         } 
     }
 }
-
-// Get tile sizes
-var tw = CELL_WIDTH / 2;
-var th = CELL_HEIGHT / 2;
 
 // Add the tiles
 for(var yy = 0; yy &lt; height*2; yy++) {
@@ -224,6 +244,110 @@ for(var yy = 0; yy &lt; height*2; yy++) {
         </arguments>
       </action>
     </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>room_restart();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Restart Room if player dies
+
+if global.player_health_ &lt;= 0 {
+    if(player_alive_) alarm[0] = 30;
+    player_alive_ = false;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>// Drawing Player Health
+
+var _gui_width = display_get_gui_width();
+var _gui_height = display_get_gui_height();
+
+var _full_hearts = global.player_health_ div 4;
+var _partial_heart = global.player_health_ % 4;
+var _empty_hearts = ((global.player_max_health_ - global.player_health_) div 4)
+
+var _hearts_drawn = 0;
+
+for (var _i = 0; _i &lt; _full_hearts; _i++) {
+    draw_sprite(s_full_heart, s_full_heart, 12+15*_hearts_drawn, 12);
+    _hearts_drawn++;
+}
+
+if(_partial_heart &gt; 0) {
+    if(_partial_heart == 1) {
+        draw_sprite(s_14_heart, s_14_heart, 12+15*_hearts_drawn, 12);
+    } else if(_partial_heart == 2) {
+        draw_sprite(s_half_heart, s_half_heart, 12+15*_hearts_drawn, 12);
+    } else if (_partial_heart == 3) {
+        draw_sprite(s_34_heart, s_34_heart, 12+15*_hearts_drawn, 12);
+    }
+    _hearts_drawn++;
+}
+
+for (var _i = 0; _i &lt; _empty_hearts; _i++) {
+    draw_sprite(s_empty_heart, s_empty_heart, 12+15*_hearts_drawn, 12);
+    _hearts_drawn++;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="9" enumb="32">
       <action>
         <libid>1</libid>
@@ -242,7 +366,7 @@ for(var yy = 0; yy &lt; height*2; yy++) {
           <argument>
             <kind>1</kind>
             <string>/// Restart the room
-room_restart();
+//room_restart();
 </string>
           </argument>
         </arguments>

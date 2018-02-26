@@ -6,28 +6,77 @@
   <NewExtensions/>
   <sounds name="sound">
     <sound>sound\a_swipe</sound>
+    <sound>sound\a_item</sound>
+    <sound>sound\a_collect_item</sound>
   </sounds>
   <sprites name="sprites">
     <sprite>sprites\spr_player</sprite>
-    <sprite>sprites\s_player_run_down</sprite>
-    <sprite>sprites\s_player_run_right</sprite>
-    <sprite>sprites\s_player_run_up</sprite>
-    <sprite>sprites\s_player_attack_down</sprite>
-    <sprite>sprites\s_player_attack_right</sprite>
-    <sprite>sprites\s_player_attack_up</sprite>
-    <sprite>sprites\spr_down_zl</sprite>
-    <sprite>sprites\spr_right_zl</sprite>
-    <sprite>sprites\spr_up_zl</sprite>
-    <sprite>sprites\spr_attack_down_zl</sprite>
-    <sprite>sprites\spr_attack_up_zl</sprite>
-    <sprite>sprites\spr_attack_right_zl</sprite>
-    <sprite>sprites\spr_attack_left_zl</sprite>
-    <sprite>sprites\spr_left_zl</sprite>
+    <sprites name="player">
+      <sprites name="zeldalike">
+        <sprite>sprites\spr_down_zl</sprite>
+        <sprite>sprites\spr_attack_right_zl</sprite>
+        <sprite>sprites\spr_right_zl</sprite>
+        <sprite>sprites\spr_attack_down_zl</sprite>
+        <sprite>sprites\spr_up_zl</sprite>
+        <sprite>sprites\spr_attack_left_zl</sprite>
+        <sprite>sprites\spr_left_zl</sprite>
+        <sprite>sprites\spr_attack_up_zl</sprite>
+      </sprites>
+      <sprites name="ben_rpg">
+        <sprite>sprites\s_player_run_up</sprite>
+        <sprite>sprites\s_player_attack_right</sprite>
+        <sprite>sprites\s_player_run_right</sprite>
+        <sprite>sprites\s_player_run_down</sprite>
+        <sprite>sprites\s_player_attack_up</sprite>
+        <sprite>sprites\s_player_attack_down</sprite>
+      </sprites>
+    </sprites>
+    <sprite>sprites\spr_stair</sprite>
+    <sprites name="log">
+      <sprite>sprites\s_log_sleeping</sprite>
+      <sprite>sprites\s_log_attack</sprite>
+      <sprite>sprites\s_log_down</sprite>
+      <sprite>sprites\s_log_up</sprite>
+      <sprite>sprites\s_log_right</sprite>
+      <sprite>sprites\s_log_left</sprite>
+    </sprites>
+    <sprites name="collision_sprites">
+      <sprite>sprites\s_bomb_hitbox</sprite>
+      <sprite>sprites\s_sword_hitbox</sprite>
+      <sprite>sprites\s_log_hitbox</sprite>
+    </sprites>
+    <sprites name="UI">
+      <sprite>sprites\s_full_heart</sprite>
+      <sprite>sprites\s_34_heart</sprite>
+      <sprite>sprites\s_half_heart</sprite>
+      <sprite>sprites\s_14_heart</sprite>
+      <sprite>sprites\s_empty_heart</sprite>
+    </sprites>
+    <sprites name="drops">
+      <sprite>sprites\s_drop_heart</sprite>
+      <sprite>sprites\s_drop_chest</sprite>
+      <sprite>sprites\s_fire</sprite>
+      <sprite>sprites\s_smoke</sprite>
+    </sprites>
+    <sprites name="effects">
+      <sprite>sprites\s_hit_effect</sprite>
+      <sprite>sprites\s_death_effect</sprite>
+      <sprite>sprites\s_shine</sprite>
+    </sprites>
+    <sprites name="misc">
+      <sprite>sprites\s_small_shadow</sprite>
+      <sprite>sprites\s_medium_shadow</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_floor</background>
     <background>background\bg_wall</background>
     <background>background\bg_wall_tiles</background>
+    <background>background\bg_wall_tiles_dup</background>
+    <background>background\bg_zl_tiles</background>
+    <background>background\bg_floor_2</background>
+    <background>background\bg_void</background>
+    <background>background\bg_stairs</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -45,11 +94,35 @@
       <script>scripts\approach.gml</script>
       <script>scripts\array.gml</script>
     </scripts>
+    <scripts name="hitbox_scripts">
+      <script>scripts\create_hitbox.gml</script>
+      <script>scripts\is_target.gml</script>
+    </scripts>
+    <script>scripts\get_direction_facing.gml</script>
+    <script>scripts\log_attack.gml</script>
+    <scripts name="hurtbox_scripts">
+      <script>scripts\initialize_hurtbox_entity.gml</script>
+      <script>scripts\hurtbox_entity_can_be_hit_by.gml</script>
+    </scripts>
+    <script>scripts\create_animation_effect.gml</script>
+    <script>scripts\draw_self_flash.gml</script>
+    <script>scripts\chance.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\Level</object>
     <object>objects\Player</object>
-    <object>objects\o_enemy</object>
+    <object>objects\o_exit</object>
+    <objects name="enemies">
+      <object>objects\o_log</object>
+      <object>objects\o_enemy</object>
+    </objects>
+    <object>objects\o_hitbox</object>
+    <object>objects\o_animation_effect</object>
+    <objects name="items">
+      <object>objects\o_pickup</object>
+      <object>objects\o_chest_pickup</object>
+      <object>objects\o_heart_pickup</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_one</room>

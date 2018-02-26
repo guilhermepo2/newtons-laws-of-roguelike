@@ -26,7 +26,8 @@
           <argument>
             <kind>1</kind>
             <string>initialize_movement_entity(.5, 1);
-invincible_ = false;
+initialize_hurtbox_entity();
+
 image_speed = 0;
 acceleration_ = .5;
 max_speed_ = 1.5;
@@ -61,6 +62,36 @@ sprite_[player.sword, dir.right] = spr_attack_right_zl;
 sprite_[player.sword, dir.left] = spr_attack_left_zl;
 sprite_[player.sword, dir.down] = spr_attack_down_zl;
 sprite_[player.sword, dir.up] = spr_attack_up_zl;
+
+sprite_[player.hit, dir.right] = spr_right_zl;
+sprite_[player.hit, dir.left] = spr_left_zl;
+sprite_[player.hit, dir.down] = spr_down_zl;
+sprite_[player.hit, dir.up] = spr_up_zl;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Invencibility Alarm
+
+invincible_ = false;
 </string>
           </argument>
         </arguments>
@@ -86,6 +117,75 @@ sprite_[player.sword, dir.up] = spr_attack_up_zl;
             <string>depth = -y;
 event_user(state_);
 sprite_index = sprite_[state_, direction_facing_];
+
+if global.player_health_ &lt;= 0 {
+    create_animation_effect(s_death_effect, x, y, .6, true);
+    instance_destroy();
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="o_hitbox">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Player Hit Logic
+
+if hurtbox_entity_can_be_hit_by(other) {
+    invincible_ = true;
+    alarm[0] = 30;
+    global.player_health_ -= other.damage_;
+    var _direction = point_direction(other.x, other.y, x, y);
+    set_movement(_direction, other.knockback_);
+    
+    state_ = player.hit;
+    event_user(state_);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="13">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Hit State
+image_index = 0;
+move_movement_entity(true);
+apply_friction_to_movement_entity();
+
+if speed_ == 0 {
+    state_ = starting_state_;
+}
 </string>
           </argument>
         </arguments>
@@ -109,9 +209,12 @@ sprite_index = sprite_[state_, direction_facing_];
           <argument>
             <kind>1</kind>
             <string>/// Sword State
-image_speed = .4;
+image_speed = .6;
 
 if(animation_hit_frame(1)) {
+    _arr = array_create(1);
+    _arr[0] = o_enemy;
+    create_hitbox(s_sword_hitbox, x, y, (direction_facing_*90), 2, _arr, 1, 8);
     audio_play_sound(a_swipe, 8, false);
 }
 
@@ -202,11 +305,36 @@ move(hspd, vspd);
           <argument>
             <kind>1</kind>
             <string>// Draw the fps real
-draw_text_colour(16, 16, "fps real: " + string(fps_real), c_white, c_white, c_white, c_white, .75);
+//draw_text_colour(16, 16, "fps real: " + string(fps_real), c_white, c_white, c_white, c_white, .75);
 // Draw the fps
-draw_text_colour(16, 32, "fps: " + string(fps), c_white, c_white, c_white, c_white, .75);
+//draw_text_colour(16, 32, "fps: " + string(fps), c_white, c_white, c_white, c_white, .75);
 // Draw the instance count
-draw_text_colour(16, 48, "Instances: " + string(instance_count), c_white, c_white, c_white, c_white,  .75);
+//draw_text_colour(16, 48, "Instances: " + string(instance_count), c_white, c_white, c_white, c_white,  .75);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_self();
+
+draw_self_flash(c_white, 8, alarm[0]);
 </string>
           </argument>
         </arguments>
