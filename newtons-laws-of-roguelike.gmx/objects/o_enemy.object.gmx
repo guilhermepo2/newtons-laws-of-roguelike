@@ -60,11 +60,16 @@ enum enemy {
           <argument>
             <kind>1</kind>
             <string>create_animation_effect(s_death_effect, x, y, .6, true);
-    
+
+var _item = choose(o_chest_pickup, o_heart_pickup);
+instance_create(x, y, _item); 
+
+/*    
 if chance(.75) {
     var _item = choose(o_chest_pickup, o_heart_pickup);
     instance_create(x, y, _item); 
 }
+*/
 </string>
           </argument>
         </arguments>

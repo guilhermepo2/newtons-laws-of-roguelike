@@ -4,6 +4,12 @@ Entry for the GMC Jam 7 - Themed Newton's Laws of Movement
 
 The entry is a simple Roguelike where the enemies are inspired on Newton's Laws of Movement, but, BUT! They all look the same in the Dungeon... Good Luck!
 
+## How to Play
+
+* **Arrows:** Move Your Character
+* **E:** Attack
+* **Space:** Restart Level
+
 ## Enemies
 
 **The Log:** The log will remain sleeping unless acted upon a force :)
@@ -16,6 +22,6 @@ The entry is a simple Roguelike where the enemies are inspired on Newton's Laws 
 
 ### Credits:
 
-[Heartbeast](https://learn.heartbeast.co/) - HeartBeast was my first learning resource for GameMaker, I rewatched some classes of his Action RPG Course for this entry, also, I watched his Random Dungeon Generation video for GameMaker Studio to reach this results - I also used some of his arts and sound from the course
+[Heartbeast](https://learn.heartbeast.co/) - HeartBeast was my first learning resource for GameMaker, I rewatched some classes of his Action RPG Course for this entry, also, I watched his Random Dungeon Generation video for GameMaker Studio to reach this results - I used sounds and effects from his course (I'M NOT IF THIS IS ALLOWED, PLEASE MSG ME IF IT ISN'T).
 
-[ArMM1998](https://opengameart.org/content/zelda-like-tilesets-and-sprites) - This is where I got the art from
+[ArMM1998](https://opengameart.org/content/zelda-like-tilesets-and-sprites) - Most of the art is from this link, main character, log enemy, the dungeon tileset was also inspired by this set.

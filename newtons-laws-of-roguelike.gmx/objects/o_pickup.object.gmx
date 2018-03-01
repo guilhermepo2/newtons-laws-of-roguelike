@@ -29,8 +29,8 @@
 depth = -y;
 z_ = 0;
 z_speed_ = -4;
-gravity_ = .25;
-can_pickup_ = false;
+//gravity_ = .25;
+can_pickup_ = true;
 
 audio_play_sound(a_item, 2, false);
 </string>
@@ -81,6 +81,7 @@ create_animation_effect(s_shine, x, y-8, 1, false);
             <kind>1</kind>
             <string>/// Pickup Step
 
+/*
 z_ += z_speed_;
 z_speed_ += gravity_;
 
@@ -93,6 +94,7 @@ if z_ &gt;= 0 {
         z_ = 0;
     }
 }
+*/
 </string>
           </argument>
         </arguments>
@@ -140,7 +142,7 @@ event_user(PICKED_UP);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_sprite(sprite_index, image_index, x, y+z_);
+            <string>draw_sprite(sprite_index, image_index, x, y);
 </string>
           </argument>
         </arguments>

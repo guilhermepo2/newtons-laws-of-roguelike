@@ -26,8 +26,8 @@
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-z_speed_ = -3;
-gravity = .2;
+//z_speed_ = -3;
+//gravity = .2;
 </string>
           </argument>
         </arguments>
